@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Update{% endblock title %}
+{% block body %}
+<section>
+    <div class="container w-50 mx-auto m-5">
+        <div class="text-center">
+            <h1 class="display-4">Update Todo</h1>
+            <hr class="w-25 mx-auto">
+        </div>
+        <form action="/" method="POST">
+            <div class="mb-5">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" value="{{todo.title}}" name="title" class="form-control" id="title" required aria-describedby="titlehelp">
+            </div>
+            <div class="mb-4">
+              <label for="desc" class="form-label">Description</label>
+              <input rows="5" value="{{todo.desc}}" type="text" name="desc" class="form-control" id="desc" required></input>
+            </div>
+            <button type="submit" class="btn btn-outline-dark">Update</button>
+        </form>
+    </div>
+    <br><br>
+</section>
+{% endblock body %}

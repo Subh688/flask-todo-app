@@ -1,0 +1,38 @@
+1. Install Virtual Environment:
+        - pip install virtualenv
+
+2. Create a Virtual Environment:
+        - virtualenv env
+
+3. If Creating Virtual Environment Shows Errors:
+        Open Powershell Admin and Run The Command:
+            - Set-ExecutionPolicy unrestricted
+
+4. Activate Virtual Environment:
+        - .\env\Scripts\activate.ps1
+
+5. Install Flask In Virtual Environment (make sure virtual environment is activated):
+        - pip install flask
+
+6. Flask Minimal App Code:
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return "<p>Hello, World!</p>"
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+7. Run The Flask App:
+    python app.py
+
+8. The (static) folder is used to serve static files.
+
+9. The (templates) folder is used to render templates.
+
+10. To install a databse interacting module:
+        - pip install flask-sqlalchemy

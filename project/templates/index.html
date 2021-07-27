@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+<section>
+    <div class="container w-50 mx-auto m-5">
+        <div class="text-center">
+            <h1 class="display-4">Add Todos</h1>
+            <hr class="w-25 mx-auto">
+        </div>
+        <form action="/" method="POST">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" name="title" class="form-control" id="title" required aria-describedby="titlehelp">
+            </div>
+            <div class="mb-3">
+              <label for="desc" class="form-label">Description</label>
+              <textarea rows="5" type="text" name="desc" class="form-control" id="desc" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-dark">Submit</button>
+        </form>
+    </div>
+</section>
+
+{% if allTodo|length == 0 %}
+<div class="w-75 mx-auto my-5 alert alert-warning alert-dismissible fade show" role="alert">
+  <p>
+    <strong class="text-danger">No Todo Here!</strong> You should Add Some
+    Records In The Form Given Above
+  </p>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+{% else %}
+<section>
+  <div class="container m-5" id="todosdiv">
+    <div class="text-center">
+      <h1 class="display-4">Your Todos</h1>
+      <hr class="w-25 mx-auto" />
+    </div>
+    <table class="table table-bordered table-striped table-hover w-75 mx-auto">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">SNo.</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Time</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for todo in allTodo %}
+        <tr>
+          <th scope="row">{{loop.index}}</th>
+          <td>{{todo.title}}</td>
+          <td>{{todo.desc}}</td>
+          <td>{{todo.date_created}}</td>
+          <td class="d-flex">
+            <a
+              href="/delete/{{todo.sno}}"
+              type="button"
+              class="btn btn-sm btn-outline-dark m-1"
+              >Delete</a
+            >
+            <a
+              href="/update/{{todo.sno}}"
+              type="button"
+              class="btn btn-sm btn-outline-dark m-1"
+              >Update</a
+            >
+          </td>
+        </tr>
+      </tbody>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </div>
+</section>
+{% endblock body %}
